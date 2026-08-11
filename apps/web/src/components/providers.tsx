@@ -9,7 +9,8 @@ import { authClient } from "@/lib/auth-client";
 
 import { ThemeProvider } from "./theme-provider";
 
-const convex = new ConvexReactClient(env.NEXT_PUBLIC_CONVEX_URL);
+const convexUrl = env.NEXT_PUBLIC_CONVEX_URL || "https://lovable-clam-34.convex.cloud";
+const convex = new ConvexReactClient(convexUrl);
 
 export default function Providers({
   children,

@@ -157,21 +157,11 @@ const DEFAULT_EXPERIENCES = [
 ];
 
 export default function Home() {
-  let profile = null;
-  let projects = null;
-  let skills = null;
-  let experiences = null;
-  let seedData: any = null;
-
-  try {
-    profile = useQuery(api.portfolio.getProfile);
-    projects = useQuery(api.portfolio.getProjects, {});
-    skills = useQuery(api.portfolio.getSkills);
-    experiences = useQuery(api.portfolio.getExperiences);
-    seedData = useMutation(api.seed.seedData);
-  } catch (e) {
-    console.warn("Convex Cloud backend functions not yet pushed:", e);
-  }
+  const profile = useQuery(api.portfolio.getProfile);
+  const projects = useQuery(api.portfolio.getProjects, {});
+  const skills = useQuery(api.portfolio.getSkills);
+  const experiences = useQuery(api.portfolio.getExperiences);
+  const seedData = useMutation(api.seed.seedData);
 
   // Auto-seed if Convex is connected and empty
   useEffect(() => {
