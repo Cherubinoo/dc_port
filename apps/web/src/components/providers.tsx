@@ -20,7 +20,7 @@ export default function Providers({
 }) {
   return (
     <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-      <ConvexBetterAuthProvider client={convex} authClient={authClient} initialToken={initialToken}>
+      <ConvexBetterAuthProvider client={convex} authClient={authClient as any} initialToken={initialToken}>
         {children}
       </ConvexBetterAuthProvider>
       <Toaster richColors />

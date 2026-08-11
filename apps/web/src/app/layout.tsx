@@ -18,8 +18,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "dc",
-  description: "dc",
+  title: "Delight Cherubino | AI & Data Science Engineer",
+  description: "Portfolio of Delight Cherubino - AI & Data Science Vice President, Computer Vision (YOLOv8) & Full-Stack Engineer.",
 };
 
 export default async function RootLayout({
@@ -30,10 +30,9 @@ export default async function RootLayout({
   const token = await getToken();
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#0a0c10]`}>
         <Providers initialToken={token}>
-          <div className="grid grid-rows-[auto_1fr] h-svh">
-            <Header />
+          <div className="min-h-screen">
             {children}
           </div>
         </Providers>
