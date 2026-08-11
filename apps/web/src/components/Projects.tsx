@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ExternalLink, Code, X, Briefcase, Award } from "lucide-react";
+import { ExternalLink, Code, X, Briefcase } from "lucide-react";
 import ChromaGrid, { type ChromaItem } from "./ChromaGrid";
 
 export interface Project {
@@ -27,10 +27,20 @@ interface ProjectsProps {
 export default function Projects({ projects }: ProjectsProps) {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
-  const workProjects = projects.filter((p) => p.category === "work");
+  const workProjects = [...projects]
+    .filter((p) => p.category === "work" || p.title.toLowerCase().includes("code2day"))
+    .sort((a, b) => {
+      const isA = a.title.toLowerCase().includes("code2day");
+      const isB = b.title.toLowerCase().includes("code2day");
+      if (isA) return -1;
+      if (isB) return 1;
+      return 0;
+    });
+
   if (workProjects.length === 0) return null;
 
   const chromaItems: ChromaItem[] = workProjects.map((p, i) => {
+    const isCode2Day = p.title.toLowerCase().includes("code2day");
     const borders = ["#FB6C00", "#F9B637", "#E73F1E"];
     const gradients = [
       "linear-gradient(145deg, rgba(251, 108, 0, 0.25), rgba(6, 5, 3, 0.95))",
@@ -38,17 +48,31 @@ export default function Projects({ projects }: ProjectsProps) {
       "linear-gradient(145deg, rgba(231, 63, 30, 0.25), rgba(6, 5, 3, 0.95))",
     ];
 
+    const imageMap: Record<string, string> = {
+      code2day: "/images/code2day.png",
+      safety: "/images/safety-gear-monitoring.jpg",
+      gear: "/images/safety-gear-monitoring.jpg",
+      monitoring: "/images/safety-gear-monitoring.jpg",
+      question: "/images/AI Question Generator.jpg",
+      cement: "/images/Cement Bag Detection.jpg",
+    };
+    const titleLower = p.title.toLowerCase();
+    const matchedKey = Object.keys(imageMap).find((k) => titleLower.includes(k));
+    const projectImage = p.image || (matchedKey ? imageMap[matchedKey] : undefined);
+
     return {
       _id: p._id,
-      image: p.image,
+      image: projectImage,
       title: p.title,
       subtitle: p.description,
       company: p.company,
       handle: p.company,
-      borderColor: borders[i % borders.length],
-      gradient: gradients[i % gradients.length],
+      borderColor: isCode2Day ? "#FB6C00" : borders[i % borders.length],
+      gradient: isCode2Day
+        ? "linear-gradient(145deg, rgba(251, 108, 0, 0.35), rgba(6, 5, 3, 0.98))"
+        : gradients[i % gradients.length],
       tech_stack: p.tech_stack,
-      award_name: p.award_name,
+      award_name: isCode2Day ? "⭐ Flagship Platform & Best Project" : p.award_name,
       award_link: p.award_link,
       live_link: p.live_link,
       github_link: p.github_link,
@@ -60,7 +84,7 @@ export default function Projects({ projects }: ProjectsProps) {
     <section id="work" className="py-32 relative border-t border-slate-800/80 bg-[#060503] w-full">
       <div className="w-full px-6 sm:px-12 lg:px-16 max-w-[1550px] mx-auto">
         
-        {/* Left-Aligned Header */}
+        {/* Clean Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -72,7 +96,7 @@ export default function Projects({ projects }: ProjectsProps) {
             <span>02 / Commercial Impact</span>
           </div>
           <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white">
-            Selected <span className="grad-text">Case Studies.</span>
+            Selected <span className="grad-text">Case Studies</span> & Impactful Projects.
           </h2>
         </motion.div>
 

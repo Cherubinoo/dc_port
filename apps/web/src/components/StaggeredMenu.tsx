@@ -454,6 +454,8 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                   <a
                     className="sm-panel-item"
                     href={it.link}
+                    target={it.link.includes(".pdf") || it.link.startsWith("http") ? "_blank" : undefined}
+                    rel={it.link.includes(".pdf") || it.link.startsWith("http") ? "noopener noreferrer" : undefined}
                     aria-label={it.ariaLabel}
                     data-index={idx + 1}
                     onClick={closeMenu}

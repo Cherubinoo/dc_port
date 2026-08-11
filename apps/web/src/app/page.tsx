@@ -12,6 +12,7 @@ import PersonalProjects from "@/components/PersonalProjects";
 import Experience from "@/components/Experience";
 import Skills from "@/components/Skills";
 import Footer from "@/components/Footer";
+import PageLoader from "@/components/PageLoader";
 
 const DEFAULT_PROFILE = {
   name: "Delight Cherubino",
@@ -20,11 +21,12 @@ const DEFAULT_PROFILE = {
   vision: "My long-term goal is to build impactful technology solutions that solve real problems at scale. I aim to contribute to the development of intelligent systems that make processes smarter, faster, and more efficient.",
   current_focus: "Building scalable AI-driven platforms, student-centric tools, and real-time computer vision systems.",
   leadership: "President of the Neoteric AI Association @ Ramco Institute of Technology. Mentoring students, organizing workshops, and driving project innovation.",
+  developer_saying: "Great software isn't just written — it unfolds through late-night experiments, broken builds, and relentless iteration.",
   email: "delightcherubino@gmail.com",
   phone: "+91 82207 89878",
   github: "https://github.com/Cherubinoo",
   linkedin: "https://www.linkedin.com/in/delight-cherubino-bb8456291/",
-  resume: "/resume/delightcherubinoI.pdf",
+  resume: "/delightcherubinoI.pdf",
   hero_image: "/images/1.jpg"
 };
 
@@ -103,55 +105,65 @@ const DEFAULT_PROJECTS = [
 ];
 
 const DEFAULT_SKILLS = [
-  { _id: "s1", name: "Python", category: "Backend", proficiency: 95 },
-  { _id: "s2", name: "Computer Vision (YOLOv8)", category: "AI & ML", proficiency: 92 },
-  { _id: "s3", name: "Machine Learning", category: "AI & ML", proficiency: 90 },
-  { _id: "s4", name: "FastAPI", category: "Backend", proficiency: 88 },
-  { _id: "s5", name: "OCR Pipelines", category: "AI & ML", proficiency: 85 },
-  { _id: "s6", name: "Next.js / React", category: "Frontend", proficiency: 90 },
-  { _id: "s7", name: "Real-time System Architecture", category: "System Design", proficiency: 85 },
-  { _id: "s8", name: "Convex / PostgreSQL", category: "Backend", proficiency: 88 },
+  { _id: "s1", name: "LLM Fine-Tuning (LoRA, PEFT, SFT)", category: "LLM Engineering & GenAI", proficiency: 96 },
+  { _id: "s2", name: "Quantization (GGUF, AWQ)", category: "LLM Engineering & GenAI", proficiency: 92 },
+  { _id: "s3", name: "RAG & Vector DB Architecture", category: "LLM Engineering & GenAI", proficiency: 94 },
+  { _id: "s4", name: "Ollama / Llama 3 8B & AWS Bedrock", category: "LLM Engineering & GenAI", proficiency: 95 },
+  { _id: "s5", name: "YOLOv8 Object Detection", category: "Computer Vision & ML", proficiency: 97 },
+  { _id: "s6", name: "ONNX Runtime Edge Inference", category: "Computer Vision & ML", proficiency: 92 },
+  { _id: "s7", name: "PyTorch & OpenCV Pipelines", category: "Computer Vision & ML", proficiency: 95 },
+  { _id: "s8", name: "Dataset Annotation & Augmentation", category: "Computer Vision & ML", proficiency: 90 },
+  { _id: "s9", name: "PostgreSQL & Relational Schemas", category: "Database & Storage Systems", proficiency: 94 },
+  { _id: "s10", name: "Redis Caching & In-Memory Queues", category: "Database & Storage Systems", proficiency: 90 },
+  { _id: "s11", name: "Vector DBs (ChromaDB, Pinecone)", category: "Database & Storage Systems", proficiency: 92 },
+  { _id: "s12", name: "Convex Realtime DB & AWS S3", category: "Database & Storage Systems", proficiency: 95 },
+  { _id: "s13", name: "Power BI & Python ETL Pipelines", category: "Database & Storage Systems", proficiency: 90 },
+  { _id: "s14", name: "Python / FastAPI / Django", category: "Full-Stack & Cloud DevOps", proficiency: 96 },
+  { _id: "s15", name: "React / Next.js / TypeScript", category: "Full-Stack & Cloud DevOps", proficiency: 92 },
+  { _id: "s16", name: "Docker Sandboxing & CI/CD", category: "Full-Stack & Cloud DevOps", proficiency: 90 },
+  { _id: "s17", name: "LMS Integration & Documentation", category: "Architecture & Technical Writing", proficiency: 94 },
+  { _id: "s18", name: "Anti-Cheat Detection Algorithms", category: "Architecture & Technical Writing", proficiency: 90 }
 ];
 
 const DEFAULT_EXPERIENCES = [
   {
     _id: "e1",
-    title: "President – Neoteric AI Association",
-    company: "Ramco Institute of Technology",
-    duration: "Aug 2025 – Present",
-    description: "• Leading technical initiatives and coordinating activities within the Neoteric AI Association\n• Mentoring students in project development, AI concepts, and implementation strategies\n• Organizing workshops, technical events, and collaborative sessions\n• Driving innovation by encouraging real-world problem-solving among peers",
+    title: "ML Intern — Cement Bag Counting System",
+    company: "The Ramco Cements Limited",
+    duration: "Jan 2025 – Dec 2025",
+    description: "• Engineered, trained, and optimized a custom YOLOv8 computer vision model (97.5% accuracy), handling end-to-end dataset annotation, augmentation, and hyperparameter tuning.\n• Optimized model inference using ONNX Runtime for real-time edge processing and authored setup documentation for factory personnel.\n• Built a PyQt5 inventory management dashboard and presented evaluation metrics, loss curves, and ROI findings directly to plant leadership.",
     is_academic: false
   },
   {
     _id: "e2",
-    title: "AI & ML Lead",
-    company: "Google Developer Groups on Campus - RIT",
-    duration: "Oct 2025 – Present",
-    description: "• Leading AI & ML initiatives, organizing technical sessions, and building a vibrant community of developer peers on campus.",
+    title: "AI & ML Intern — Human Detection & Security System",
+    company: "The Ramco Cements Limited",
+    duration: "May 2024 – Aug 2024",
+    description: "• Developed human detection project using AI with Python and computer vision libraries.\n• Trained and deployed object detection models on multi-camera RTSP video feeds utilizing Python multithreading for concurrent batch inference.\n• Contributed to data cleaning process and setting up automated systems to track water extraction and consumption.",
     is_academic: false
   },
   {
     _id: "e3",
-    title: "Intern",
-    company: "The Ramco Cements Limited",
-    duration: "May 2024 – Aug 2024",
-    description: "• Developed human detection project using AI with Python and computer vision libraries.\n• Contributed to data cleaning process in water analysis project.\n• Assisted in setting up an automated system to track water extraction and consumption.",
+    title: "Data Analyst & Project Intern",
+    company: "Igress Solutions LLP",
+    duration: "Nov 2023 – Dec 2023",
+    description: "• Designed Power BI sales analytics dashboards and engineered automated Python ETL pipelines for AWS sales & telemetry data.\n• Collaborated with team members on cloud infrastructure project management and operational dashboards.\n• Received Spot and Impact Awards within month one for data presentation clarity and precision ETL modeling.",
     is_academic: false
   },
   {
     _id: "e4",
-    title: "Project Intern",
-    company: "Igress Solutions LLP",
-    duration: "Nov 2023 – Dec 2023",
-    description: "• Collaborated with team members to analyze AWS telemetry data.\n• Implemented custom data visualization techniques for operational dashboards.",
-    is_academic: false
+    title: "President – Neoteric AI Association",
+    company: "Ramco Institute of Technology",
+    duration: "Aug 2025 – Present",
+    description: "• Leading technical initiatives and coordinating activities within the Neoteric AI Association\n• Mentoring students in project development, AI concepts, and implementation strategies\n• Organizing workshops, technical events, and collaborative sessions",
+    is_academic: true
   },
   {
     _id: "e5",
-    title: "AI Developer",
-    company: "Independent / Academic Projects",
-    duration: "Ongoing",
-    description: "• Designed and developed multiple AI-based systems focused on real-world industrial applications.\n• Built computer vision solutions using YOLOv8.\n• Developed high-throughput backend services using FastAPI & Next.js.",
+    title: "AI & ML Lead",
+    company: "Google Developer Groups on Campus - RIT",
+    duration: "Oct 2025 – Present",
+    description: "• Leading AI & ML initiatives, organizing technical sessions, and building a vibrant community of developer peers on campus.",
     is_academic: true
   }
 ];
@@ -177,11 +189,12 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-[#060503] text-slate-100 selection:bg-[#FB6C00] selection:text-white">
+      <PageLoader />
       <Navigation resumeUrl={activeProfile?.resume} />
       <Hero profile={activeProfile} />
       <About profile={activeProfile} />
       <Projects projects={activeProjects as any} />
-      <PersonalProjects projects={activeProjects as any} />
+      <PersonalProjects projects={activeProjects as any} saying={activeProfile?.developer_saying} />
       <Experience experiences={activeExperiences as any} />
       <Skills skills={activeSkills as any} />
       <Footer profile={activeProfile} />

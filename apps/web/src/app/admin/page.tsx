@@ -89,6 +89,7 @@ export default function AdminPage() {
     linkedin: "",
     resume: "",
     hero_image: "",
+    developer_saying: "",
   });
 
   // Project Modal State
@@ -145,6 +146,7 @@ export default function AdminPage() {
         linkedin: profile.linkedin || "",
         resume: profile.resume || "",
         hero_image: profile.hero_image || "",
+        developer_saying: profile.developer_saying || "Great software isn't just written — it unfolds through late-night experiments, broken builds, and relentless iteration.",
       });
     }
   }, [profile]);
@@ -544,6 +546,19 @@ export default function AdminPage() {
               </div>
             </div>
 
+            <div>
+              <label className="block text-xs font-mono text-[#FFDD9C] uppercase font-bold mb-1">
+                Developer Saying / Digital Crafts Quote
+              </label>
+              <textarea
+                rows={2}
+                value={profileForm.developer_saying || ""}
+                onChange={(e) => setProfileForm({ ...profileForm, developer_saying: e.target.value })}
+                placeholder="Great software isn't just written — it unfolds through late-night experiments..."
+                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-slate-100 text-sm focus:border-[#F9B637] outline-none italic"
+              />
+            </div>
+
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label className="block text-xs font-mono text-slate-400 mb-1">Email</label>
@@ -587,14 +602,47 @@ export default function AdminPage() {
                 />
               </div>
 
-              <div>
-                <label className="block text-xs font-mono text-slate-400 mb-1">Resume PDF Path</label>
+              <div className="sm:col-span-3 p-4 rounded-2xl bg-slate-900/60 border border-slate-800 space-y-3">
+                <div className="flex items-center justify-between">
+                  <label className="block text-xs font-mono text-[#FFDD9C] uppercase font-bold">Resume PDF Media Manager</label>
+                  {profileForm.resume && (
+                    <a
+                      href={profileForm.resume}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs font-mono text-[#F9B637] hover:underline flex items-center gap-1"
+                    >
+                      <FileText className="w-3.5 h-3.5" />
+                      <span>Test / View Active Resume PDF</span>
+                    </a>
+                  )}
+                </div>
+
                 <input
                   type="text"
                   value={profileForm.resume}
                   onChange={(e) => setProfileForm({ ...profileForm, resume: e.target.value })}
+                  placeholder="/resume.pdf"
                   className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-slate-100 text-sm focus:border-[#F9B637] outline-none font-mono"
                 />
+
+                <div className="flex flex-wrap items-center gap-2 pt-1">
+                  <span className="text-[11px] font-mono text-slate-400">Media Presets:</span>
+                  <button
+                    type="button"
+                    onClick={() => setProfileForm({ ...profileForm, resume: "/resume.pdf" })}
+                    className="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-mono border border-slate-700"
+                  >
+                    /resume.pdf
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setProfileForm({ ...profileForm, resume: "/delightcherubinoI.pdf" })}
+                    className="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-mono border border-slate-700"
+                  >
+                    /delightcherubinoI.pdf
+                  </button>
+                </div>
               </div>
             </div>
 
@@ -717,10 +765,13 @@ export default function AdminPage() {
                     </button>
                     <button
                       onClick={() => {
-                        deleteSkill({ id: sk._id });
-                        showNotification("Skill deleted");
+                        if (confirm(`Delete skill "${sk.name}"?`)) {
+                          deleteSkill({ id: sk._id });
+                          showNotification(`Skill "${sk.name}" deleted successfully!`);
+                        }
                       }}
                       className="p-2 rounded-lg bg-red-950/50 text-red-400 hover:bg-red-900/80 transition-colors"
+                      title="Delete Skill"
                     >
                       <Trash2 className="w-3.5 h-3.5" />
                     </button>
@@ -796,7 +847,7 @@ export default function AdminPage() {
               </button>
             </div>
 
-            <form onSubmit={handleSaveProject} className="space-y-4">
+            <form onSubmit={handleSaveProject} className="space-y-5">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-mono text-slate-400 mb-1">Project Title *</label>
@@ -835,37 +886,85 @@ export default function AdminPage() {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-mono text-slate-400 mb-1">Image URL (Optional)</label>
+                  <label className="block text-xs font-mono text-slate-400 mb-1">Project Image URL / Asset</label>
                   <input
                     type="text"
                     value={projectForm.image}
                     onChange={(e) => setProjectForm({ ...projectForm, image: e.target.value })}
-                    placeholder="/images/2.jpg or https://..."
+                    placeholder="/images/code2day.png or https://..."
                     className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-[#F9B637] outline-none font-mono"
                   />
+                  <div className="flex flex-wrap gap-1.5 pt-1.5">
+                    <span className="text-[11px] font-mono text-slate-500">Image Presets:</span>
+                    {[
+                      { label: "Code2Day", url: "/images/code2day.png" },
+                      { label: "Safety Gear", url: "/images/Safety Gear Monitoring.jpg" },
+                      { label: "AI Question", url: "/images/AI Question Generator.jpg" },
+                      { label: "Cement Bag", url: "/images/Cement Bag Detection.jpg" },
+                    ].map((imgP) => (
+                      <button
+                        key={imgP.url}
+                        type="button"
+                        onClick={() => setProjectForm({ ...projectForm, image: imgP.url })}
+                        className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700"
+                      >
+                        {imgP.label}
+                      </button>
+                    ))}
+                  </div>
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-mono text-slate-400 mb-1">Description *</label>
+                <label className="block text-xs font-mono text-[#FFDD9C] uppercase font-bold mb-1">
+                  Detailed Case Study Explanation & Breakdown *
+                </label>
                 <textarea
-                  rows={4}
+                  rows={6}
                   required
                   value={projectForm.description}
                   onChange={(e) => setProjectForm({ ...projectForm, description: e.target.value })}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-[#F9B637] outline-none"
+                  placeholder="Enter full technical breakdown, system architecture, key features, algorithms used, and project achievements..."
+                  className="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-[#F9B637] outline-none leading-relaxed"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-mono text-slate-400 mb-1">Tech Stack (comma-separated)</label>
+                <label className="block text-xs font-mono text-slate-400 mb-1">Tech Stack Technologies (comma-separated)</label>
                 <input
                   type="text"
                   value={projectForm.tech_stack}
                   onChange={(e) => setProjectForm({ ...projectForm, tech_stack: e.target.value })}
-                  placeholder="Python, YOLOv8, OpenCV, React"
+                  placeholder="Python, YOLOv8, OpenCV, React, FastAPI, Docker"
                   className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-[#F9B637] outline-none font-mono"
                 />
+
+                {/* Tech Stack Presets */}
+                <div className="flex flex-wrap gap-1.5 pt-2">
+                  <span className="text-[11px] font-mono text-slate-500">Quick Add:</span>
+                  {[
+                    "Python", "YOLOv8", "OpenCV", "FastAPI", "React", "Next.js",
+                    "Node.js", "Docker", "PostgreSQL", "AWS", "Convex", "TailwindCSS",
+                    "TensorFlow", "Scikit-Learn", "NLP", "Socket.io", "PDFMiner"
+                  ].map((tech) => (
+                    <button
+                      key={tech}
+                      type="button"
+                      onClick={() => {
+                        const currentTechs = projectForm.tech_stack
+                          ? projectForm.tech_stack.split(",").map((t) => t.trim()).filter(Boolean)
+                          : [];
+                        if (!currentTechs.includes(tech)) {
+                          const updated = [...currentTechs, tech].join(", ");
+                          setProjectForm({ ...projectForm, tech_stack: updated });
+                        }
+                      }}
+                      className="text-[11px] font-mono px-2 py-0.5 rounded-md bg-slate-800 hover:bg-[#FB6C00]/20 hover:text-[#FFDD9C] text-slate-300 border border-slate-700 transition-colors"
+                    >
+                      + {tech}
+                    </button>
+                  ))}
+                </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -875,6 +974,7 @@ export default function AdminPage() {
                     type="text"
                     value={projectForm.live_link}
                     onChange={(e) => setProjectForm({ ...projectForm, live_link: e.target.value })}
+                    placeholder="https://..."
                     className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-[#F9B637] outline-none font-mono"
                   />
                 </div>
@@ -885,6 +985,7 @@ export default function AdminPage() {
                     type="text"
                     value={projectForm.github_link}
                     onChange={(e) => setProjectForm({ ...projectForm, github_link: e.target.value })}
+                    placeholder="https://github.com/..."
                     className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:border-[#F9B637] outline-none font-mono"
                   />
                 </div>

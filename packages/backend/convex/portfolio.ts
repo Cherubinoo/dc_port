@@ -23,6 +23,7 @@ export const updateProfile = mutation({
     linkedin: v.optional(v.string()),
     resume: v.optional(v.string()),
     hero_image: v.optional(v.string()),
+    developer_saying: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
     const existing = await ctx.db.query("profile").first();

@@ -5,9 +5,9 @@ export const seedData = mutation({
     // 1. Seed Profile
     const existingProfile = await ctx.db.query("profile").first();
     const profileData = {
-      name: "Delight Cherubino",
+      name: "Delight Cherubino I",
       role: "President, Neoteric AI Association",
-      bio: "I’m Delight Cherubino, an Artificial Intelligence and Data Science student at Ramco Institute of Technology, with a strong focus on building real-world, scalable AI solutions. I currently serve as the President of the Neoteric AI Association, where I actively contribute to technical initiatives, student development, and collaborative innovation.\n\nMy core interest lies in transforming theoretical concepts into practical systems. I don’t just focus on learning algorithms — I focus on how they can be applied effectively in real environments to solve meaningful problems.",
+      bio: "AI & Data Science practitioner specializing in LLM fine-tuning, open-source model training, and GenAI system engineering. Creator of Code2Day—a high-concurrency learning platform acquired by QuBrain.ai—with proven expertise in translating fine-tuned AI architectures into scalable enterprise solutions, LMS tools, and technical documentation.\n\nMy core focus lies in transforming theoretical machine learning models into high-performance, real-world edge and cloud applications.",
       vision: "My long-term goal is to build impactful technology solutions that solve real problems at scale. I aim to contribute to the development of intelligent systems that make processes smarter, faster, and more efficient.",
       approach: "I believe in:\n• Building solutions that are practical and usable\n• Focusing on real-world impact over theoretical perfection\n• Learning by building and experimenting\n• Continuously improving systems through iteration and feedback",
       leadership: "As President of the Neoteric AI Association, I actively:\n• Lead and coordinate technical initiatives\n• Work closely with teams on project development\n• Encourage collaborative problem-solving\n• Help create opportunities for students to build and innovate",
@@ -15,9 +15,9 @@ export const seedData = mutation({
       email: "delightcherubino@gmail.com",
       phone: "+91 82207 89878",
       github: "https://github.com/Cherubinoo",
-      linkedin: "https://www.linkedin.com/in/delight-cherubino-bb8456291/",
-      resume: "/resume/delightcherubinoI.pdf",
-      hero_image: "/images/1.jpg",
+      linkedin: "https://www.linkedin.com/in/delight-cherubino/",
+      resume: "/resume.pdf",
+      hero_image: "/images/del-comic-sticker.png",
     };
 
     if (existingProfile) {
@@ -30,14 +30,33 @@ export const seedData = mutation({
     const existingSkills = await ctx.db.query("skills").collect();
     if (existingSkills.length === 0) {
       const skills = [
-        { name: "Python", category: "Backend", proficiency: 95 },
-        { name: "Computer Vision (YOLOv8)", category: "AI & ML", proficiency: 92 },
-        { name: "Machine Learning", category: "AI & ML", proficiency: 90 },
-        { name: "FastAPI", category: "Backend", proficiency: 88 },
-        { name: "OCR Pipelines", category: "AI & ML", proficiency: 85 },
-        { name: "Next.js / React", category: "Frontend", proficiency: 90 },
-        { name: "Real-time System Architecture", category: "System Design", proficiency: 85 },
-        { name: "Convex / PostgreSQL", category: "Backend", proficiency: 88 },
+        // LLM Engineering & GenAI
+        { name: "LLM Fine-Tuning (LoRA, PEFT, SFT)", category: "LLM Engineering & GenAI", proficiency: 96 },
+        { name: "Quantization (GGUF, AWQ)", category: "LLM Engineering & GenAI", proficiency: 92 },
+        { name: "RAG & Vector DB Architecture", category: "LLM Engineering & GenAI", proficiency: 94 },
+        { name: "Ollama / Llama 3 8B & AWS Bedrock", category: "LLM Engineering & GenAI", proficiency: 95 },
+        
+        // Machine Learning & Computer Vision
+        { name: "YOLOv8 Object Detection", category: "Computer Vision & ML", proficiency: 97.5 },
+        { name: "ONNX Runtime Edge Inference", category: "Computer Vision & ML", proficiency: 92 },
+        { name: "PyTorch & OpenCV Pipelines", category: "Computer Vision & ML", proficiency: 95 },
+        { name: "Dataset Annotation & Augmentation", category: "Computer Vision & ML", proficiency: 90 },
+
+        // Database & Storage Systems
+        { name: "PostgreSQL & Relational Schemas", category: "Database & Storage Systems", proficiency: 94 },
+        { name: "Redis Caching & In-Memory Queues", category: "Database & Storage Systems", proficiency: 90 },
+        { name: "Vector DBs (ChromaDB, Pinecone)", category: "Database & Storage Systems", proficiency: 92 },
+        { name: "Convex Realtime DB & AWS S3", category: "Database & Storage Systems", proficiency: 95 },
+        { name: "Power BI & Python ETL Pipelines", category: "Database & Storage Systems", proficiency: 90 },
+
+        // Full-Stack & DevOps
+        { name: "Python / FastAPI / Django", category: "Full-Stack & Cloud DevOps", proficiency: 96 },
+        { name: "React / Next.js / TypeScript", category: "Full-Stack & Cloud DevOps", proficiency: 92 },
+        { name: "Docker Sandboxing & CI/CD", category: "Full-Stack & Cloud DevOps", proficiency: 90 },
+
+        // Technical Architecture & L&D
+        { name: "LMS Integration & Technical Documentation", category: "Architecture & Technical Writing", proficiency: 94 },
+        { name: "Anti-Cheat Detection Algorithms", category: "Architecture & Technical Writing", proficiency: 90 },
       ];
       for (const skill of skills) {
         await ctx.db.insert("skills", skill);
@@ -49,38 +68,38 @@ export const seedData = mutation({
     if (existingExp.length === 0) {
       const experiences = [
         {
+          title: "ML Intern — Cement Bag Counting System",
+          company: "The Ramco Cements Limited",
+          duration: "Jan 2025 – Dec 2025",
+          description: "• Engineered, trained, and optimized a custom YOLOv8 computer vision model (97.5% accuracy), handling end-to-end dataset annotation, augmentation, and hyperparameter tuning.\n• Optimized model inference using ONNX Runtime for real-time edge processing and authored setup documentation for factory personnel.\n• Built a PyQt5 inventory management dashboard and presented evaluation metrics, loss curves, and ROI findings directly to plant leadership.",
+          is_academic: false,
+        },
+        {
+          title: "AI & ML Intern — Human Detection & Security System",
+          company: "The Ramco Cements Limited",
+          duration: "May 2024 – Aug 2024",
+          description: "• Developed human detection project using AI with Python and computer vision libraries.\n• Trained and deployed object detection models on multi-camera RTSP video feeds utilizing Python multithreading for concurrent batch inference.\n• Contributed to data cleaning process and setting up automated systems to track water extraction and consumption.",
+          is_academic: false,
+        },
+        {
+          title: "Data Analyst & Project Intern",
+          company: "Igress Solutions LLP",
+          duration: "Nov 2023 – Dec 2023",
+          description: "• Designed Power BI sales analytics dashboards and engineered automated Python ETL pipelines for AWS sales & telemetry data.\n• Collaborated with team members on cloud infrastructure project management and operational dashboards.\n• Received Spot and Impact Awards within month one for data presentation clarity and precision ETL modeling.",
+          is_academic: false,
+        },
+        {
           title: "President – Neoteric AI Association",
           company: "Ramco Institute of Technology",
           duration: "Aug 2025 – Present",
-          description: "• Leading technical initiatives and coordinating activities within the Neoteric AI Association\n• Mentoring students in project development, AI concepts, and implementation strategies\n• Organizing workshops, technical events, and collaborative sessions\n• Driving innovation by encouraging real-world problem-solving among peers\n• Managing team coordination and ensuring smooth execution of association activities",
-          is_academic: false,
+          description: "• Leading technical initiatives and coordinating activities within the Neoteric AI Association\n• Mentoring students in project development, AI concepts, and implementation strategies\n• Organizing workshops, technical events, and collaborative sessions",
+          is_academic: true,
         },
         {
           title: "AI & ML Lead",
           company: "Google Developer Groups on Campus - RIT",
           duration: "Oct 2025 – Present",
           description: "• Leading AI & ML initiatives, organizing technical sessions, and building a vibrant community of developer peers on campus.",
-          is_academic: false,
-        },
-        {
-          title: "Intern",
-          company: "The Ramco Cements Limited",
-          duration: "May 2024 – Aug 2024",
-          description: "• Developed human detection project using AI with Python and computer vision libraries.\n• Contributed to data cleaning process in water analysis project.\n• Assisted in setting up an automated system to track water extraction and consumption.",
-          is_academic: false,
-        },
-        {
-          title: "Project Intern",
-          company: "Igress Solutions LLP",
-          duration: "Nov 2023 – Dec 2023",
-          description: "• Collaborated with team members to analyze AWS telemetry data.\n• Assisted in cloud infrastructure project management tasks.\n• Implemented custom data visualization techniques for operational dashboards.",
-          is_academic: false,
-        },
-        {
-          title: "AI Developer",
-          company: "Independent / Academic Projects",
-          duration: "Ongoing",
-          description: "• Designed and developed multiple AI-based systems focused on real-world industrial and educational applications.\n• Built computer vision solutions using YOLOv8.\n• Developed high-throughput backend services using FastAPI & Next.js.\n• Implemented OCR-based document extraction pipelines.",
           is_academic: true,
         },
       ];
@@ -94,64 +113,68 @@ export const seedData = mutation({
     if (existingProjects.length === 0) {
       const projects = [
         {
-          title: "Safety Gear Monitoring",
+          title: "Code2Day",
+          company: "Acquired by QuBrain.ai",
+          category: "work",
+          award_name: "⭐ Acquired by QuBrain.ai & Flagship Platform",
+          description: "Solo developer → 56+ deployments → 550+ active student and staff users → Acquired by QuBrain.ai!\nIntegrated and fine-tuned open-source Llama 3 8B via Ollama/PyTorch for automated domain-specific question generation with structured JSON validation. Architected Docker-isolated code execution sandboxes supporting 6 languages for 320+ concurrent users with custom prompt engineering guardrails.",
+          tech_stack: ["React", "Django", "PostgreSQL", "Redis", "Docker", "Ollama", "PyTorch"],
+          live_link: "https://code2day.ramcoad.com",
+          github_link: "http://github.com/Cherubinoo/code2day",
+          image: "/images/code2day.png",
+          is_ongoing: true,
+        },
+        {
+          title: "Safety Gear Monitoring System",
           company: "The Ramco Cements Limited",
           category: "work",
           award_name: "1st Prize - INNOVANZA 2025 Hackathon",
           award_link: "https://www.linkedin.com/posts/delight-cherubino-bb8456291_hackathon-ai-ml-activity-7371875149031198721-Cx8f",
-          description: "Awarded 1st Prize at INNOVANZA 2025 Hackathon! A comprehensive CV + ML + Microcontroller Industry Safety System designed for real-time monitoring and hazard prevention. Developed in collaboration with Subbhra Yashwanth kanth P, featuring YOLOv8-powered object detection integrated with industrial hardware for instant compliance alerts.",
-          tech_stack: ["Python", "YOLOv8", "OpenCV", "Microcontrollers", "ML"],
+          description: "Awarded 1st Prize at INNOVANZA 2025 Hackathon! Trained custom YOLOv8 safety compliance models (helmet & vest detection); authored job aids and trained factory personnel on live inference and automated alert monitoring over ESP8266 & OpenCV microcontrollers.",
+          tech_stack: ["Python", "YOLOv8", "OpenCV", "PyQt5", "ESP8266"],
           live_link: "https://www.linkedin.com/posts/delight-cherubino-bb8456291_ai-computervision-yolov8-activity-7358112735206821888-AYKt",
-          github_link: "https://github.com/Cherubinoo/kamarajar-college",
-          image: "/images/2.jpg",
+          github_link: "https://github.com/Cherubinoo/ramco-cements",
+          image: "/images/safety-gear-monitoring.jpg",
+          is_ongoing: false,
+        },
+        {
+          title: "Cement Bag Counting System",
+          company: "The Ramco Cements Limited",
+          category: "work",
+          description: "Engineered, trained, and optimized a custom YOLOv8 computer vision model achieving 97.5% accuracy for real-time bag counting on industrial conveyor belts. Optimized inference using ONNX Runtime for edge deployment with PyQt5 inventory dashboard.",
+          tech_stack: ["Python", "YOLOv8", "ONNX Runtime", "PyQt5", "OpenCV"],
+          image: "/images/Cement Bag Detection.jpg",
           is_ongoing: false,
         },
         {
           title: "AI Question Generator",
           company: "Ramco Vidya Mandir School",
           category: "work",
-          description: "Developed specifically for Ramco Vidya Mandir Senior Secondary School (Ariyalur), this automated tool leverages NLP to generate structured CBSE examination papers from textbook content. The system uses LLM-based text analysis to identify key concepts and generate diverse question types, reducing administrative workload.",
+          description: "Developed specifically for Ramco Vidya Mandir Senior Secondary School (Ariyalur), this automated tool leverages NLP to generate structured CBSE examination papers from textbook content. Uses LLM text analysis to identify key concepts.",
           tech_stack: ["FastAPI", "OpenAI API", "React", "PDFMiner"],
           github_link: "https://github.com/Cherubinoo/CBSE_GENERATION",
+          image: "/images/AI Question Generator.jpg",
           is_ongoing: false,
         },
         {
-          title: "Cement Bag Detection",
-          company: "The Ramco Cements Limited",
+          title: "Amazon Sales Data Analytics & ETL",
+          company: "Igress Solutions (Remote)",
           category: "work",
-          description: "Developed specifically for industrial logistics, this system automates the counting and detection of cement bags on conveyor belts and in warehouses. Using a custom-trained YOLOv8 model, it achieves high precision even in dusty and low-light environments, significantly improving inventory accuracy.",
-          tech_stack: ["Python", "YOLOv8", "OpenCV", "FastAPI"],
+          description: "Designed Power BI sales analytics dashboards and engineered automated Python ETL pipelines for data cleaning and feature transformation using Amazon telemetry data. Awarded Spot and Impact Awards within month one.",
+          tech_stack: ["Python", "Power BI", "Pandas", "ETL", "FastAPI"],
           is_ongoing: false,
         },
         {
-          title: "Code2Day",
+          title: "Student Project Hosting Platform",
           company: "Replica Ecosystem",
           category: "personal",
-          description: "A collaborative coding platform designed for daily practice and skill building. Part of the Replica ecosystem, Code2Day focuses on providing students with real-world coding challenges and a streamlined environment to showcase progress.",
-          tech_stack: ["React", "Node.js", "Socket.io", "PostgreSQL"],
-          live_link: "https://code2day.ramcoad.com",
-          github_link: "http://github.com/Cherubinoo/code2day/tree/main",
-          is_ongoing: true,
-        },
-        {
-          title: "Student Project Hosting",
-          company: "Replica Ecosystem",
-          category: "personal",
-          description: "An automated hosting solution specifically designed for student developers. It simplifies the deployment process for web applications and provides a centralized platform for academic projects to be live and accessible.",
+          description: "An automated hosting solution specifically designed for student developers. Simplifies deployment process for web applications and provides a centralized platform for academic projects to be live and accessible.",
           tech_stack: ["Docker", "Nginx", "Python", "Cloudflare"],
           is_ongoing: true,
         },
         {
-          title: "Document Extraction",
-          company: "Igress Solutions LLP",
-          category: "personal",
-          description: "A sophisticated OCR-based pipeline integrated with language models to extract structured data from unstructured business documents (invoices, forms, receipts). Uses post-processing logic to ensure high data accuracy.",
-          tech_stack: ["FastAPI", "Tesseract", "Transformers", "Python"],
-          is_ongoing: false,
-        },
-        {
-          title: "Sentiment Analysis",
-          company: "Academic Project",
+          title: "Sentiment Analysis System",
+          company: "Academic Venture",
           category: "personal",
           description: "A machine learning based sentiment analysis system designed to process and categorize emotional tones in large-scale text data. Utilizes natural language processing (NLP) techniques to identify positive, negative, and neutral sentiments.",
           tech_stack: ["Python", "NLTK", "Scikit-learn", "Flask"],
@@ -163,6 +186,6 @@ export const seedData = mutation({
       }
     }
 
-    return "Seeding completed successfully!";
+    return "Seeding completed successfully with full resume dataset!";
   },
 });

@@ -1,9 +1,10 @@
 .text-rotate {
   display: inline-flex;
-  flex-wrap: wrap;
-  white-space: pre-wrap;
+  flex-wrap: nowrap;
+  white-space: nowrap;
   position: relative;
   vertical-align: middle;
+  align-items: center;
 }
 
 .text-rotate-sr-only {
@@ -20,6 +21,9 @@
 
 .text-rotate-word {
   display: inline-flex;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  align-items: center;
 }
 
 .text-rotate-lines {
@@ -30,6 +34,8 @@
 
 .text-rotate-element {
   display: inline-block;
+  white-space: pre;
+  will-change: transform, opacity;
 }
 
 .text-rotate-space {

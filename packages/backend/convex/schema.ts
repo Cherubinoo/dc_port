@@ -10,6 +10,7 @@ export default defineSchema({
     approach: v.optional(v.string()),
     leadership: v.optional(v.string()),
     current_focus: v.string(),
+    developer_saying: v.optional(v.string()),
     email: v.optional(v.string()),
     phone: v.optional(v.string()),
     github: v.optional(v.string()),
