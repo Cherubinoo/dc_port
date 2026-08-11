@@ -104,7 +104,7 @@ export default function Projects({ projects }: ProjectsProps) {
 
               {/* Tech Stack Pills */}
               <div className="flex flex-wrap gap-2 pt-6 mt-4 border-t border-slate-800/60">
-                {project.tech_stack.map((tech, i) => (
+                {(project.tech_stack || []).map((tech, i) => (
                   <span
                     key={i}
                     className="px-2.5 py-1 rounded-md bg-slate-900/80 border border-slate-700/50 text-slate-300 text-xs font-mono"
@@ -175,7 +175,7 @@ export default function Projects({ projects }: ProjectsProps) {
                 <div>
                   <h4 className="text-xs font-mono text-slate-400 uppercase tracking-widest mb-3">Technologies</h4>
                   <div className="flex flex-wrap gap-2">
-                    {selectedProject.tech_stack.map((tech, i) => (
+                    {(selectedProject.tech_stack || []).map((tech, i) => (
                       <span key={i} className="px-3 py-1 rounded-lg bg-slate-800 text-slate-200 text-xs font-mono border border-slate-700">
                         {tech}
                       </span>

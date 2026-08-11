@@ -75,7 +75,7 @@ export default function Experience({ experiences }: ExperienceProps) {
                 </h3>
 
                 <div className="text-slate-300 text-sm leading-relaxed space-y-2 font-mono">
-                  {exp.description.split("\n").filter(Boolean).map((line, i) => (
+                  {(exp.description || "").split("\n").filter(Boolean).map((line, i) => (
                     <div key={i} className="flex items-start gap-2">
                       <span className="text-emerald-500/70 select-none">›</span>
                       <span>{line.replace(/^•\s*/, "")}</span>

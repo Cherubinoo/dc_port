@@ -18,7 +18,7 @@ interface SkillsProps {
 export default function Skills({ skills }: SkillsProps) {
   const grouped = useMemo(() => {
     const map = new Map<string, SkillItem[]>();
-    skills.forEach((skill) => {
+    (skills || []).forEach((skill) => {
       const cat = skill.category || "Other";
       if (!map.has(cat)) map.set(cat, []);
       map.get(cat)!.push(skill);
@@ -26,7 +26,7 @@ export default function Skills({ skills }: SkillsProps) {
     return Array.from(map.entries());
   }, [skills]);
 
-  if (skills.length === 0) return null;
+  if (!skills || skills.length === 0) return null;
 
   return (
     <section id="skills" className="py-32 relative border-t border-slate-800/80 bg-[#04060a]/70 w-full">
