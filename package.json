@@ -12,7 +12,8 @@
     "check-types": "turbo run check-types",
     "dev:web": "turbo run dev -F web",
     "dev:server": "turbo run dev -F @dc/backend",
-    "dev:setup": "turbo run dev:setup -F @dc/backend"
+    "dev:setup": "turbo run dev:setup -F @dc/backend",
+    "deploy:backend": "npm --prefix packages/backend run deploy"
   },
   "dependencies": {
     "@dc/env": "*",

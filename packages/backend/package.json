@@ -6,7 +6,8 @@
   "author": "",
   "scripts": {
     "dev": "convex dev",
-    "dev:setup": "convex dev --configure --until-success"
+    "dev:setup": "convex dev --configure --until-success",
+    "deploy": "convex deploy --env-file .env.local -y"
   },
   "dependencies": {
     "@convex-dev/better-auth": "^0.12.5",
