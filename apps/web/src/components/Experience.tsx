@@ -31,8 +31,8 @@ export default function Experience({ experiences }: ExperienceProps) {
           viewport={{ once: true }}
           className="flex flex-col items-start text-left gap-3 mb-16"
         >
-          <div className="flex items-center gap-2 text-emerald-400 font-mono text-sm uppercase tracking-wider font-semibold">
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-sm shadow-emerald-500" />
+          <div className="flex items-center gap-2 text-[#F9B637] font-mono text-sm uppercase tracking-wider font-semibold">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#F9B637] shadow-sm shadow-[#F9B637]" />
             <span>04 / The Journey</span>
           </div>
           <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white">
@@ -52,14 +52,14 @@ export default function Experience({ experiences }: ExperienceProps) {
               className="relative pl-6 sm:pl-10 group"
             >
               {/* Timeline Dot */}
-              <div className="absolute -left-[17px] top-1.5 w-8 h-8 rounded-full bg-[#0a0c10] border-2 border-emerald-500/60 flex items-center justify-center group-hover:border-emerald-400 group-hover:scale-110 transition-all shadow-md shadow-emerald-500/10">
-                <Terminal className="w-3.5 h-3.5 text-emerald-400" />
+              <div className="absolute -left-[17px] top-1.5 w-8 h-8 rounded-full bg-[#0a0c10] border-2 border-[#FB6C00]/60 flex items-center justify-center group-hover:border-[#F9B637] group-hover:scale-110 transition-all shadow-md shadow-[#FB6C00]/10">
+                <Terminal className="w-3.5 h-3.5 text-[#F9B637]" />
               </div>
 
               {/* Content Panel */}
-              <div className="p-6 rounded-2xl glass-panel border-slate-800/80 hover:border-emerald-500/30 transition-all duration-300">
+              <div className="p-6 rounded-2xl glass-panel border-slate-800/80 hover:border-[#FB6C00]/40 transition-all duration-300">
                 <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
-                  <div className="flex items-center gap-2 text-emerald-400 text-xs font-mono">
+                  <div className="flex items-center gap-2 text-[#F9B637] text-xs font-mono">
                     <Calendar className="w-3.5 h-3.5" />
                     <span>{exp.duration}</span>
                   </div>
@@ -70,14 +70,14 @@ export default function Experience({ experiences }: ExperienceProps) {
                   </div>
                 </div>
 
-                <h3 className="text-xl sm:text-2xl font-bold text-slate-100 mb-4 group-hover:text-emerald-300 transition-colors">
+                <h3 className="text-xl sm:text-2xl font-bold text-slate-100 mb-4 group-hover:text-[#FFDD9C] transition-colors">
                   {exp.title}
                 </h3>
 
                 <div className="text-slate-300 text-sm leading-relaxed space-y-2 font-mono">
                   {(exp.description || "").split("\n").filter(Boolean).map((line, i) => (
                     <div key={i} className="flex items-start gap-2">
-                      <span className="text-emerald-500/70 select-none">›</span>
+                      <span className="text-[#FB6C00] select-none">›</span>
                       <span>{line.replace(/^•\s*/, "")}</span>
                     </div>
                   ))}

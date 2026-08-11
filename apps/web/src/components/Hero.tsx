@@ -3,6 +3,9 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Sparkles, Terminal } from "lucide-react";
+import SplitFlapText from "./SplitFlapText";
+import SplitText from "./SplitText";
+import RotatingText from "./RotatingText";
 
 interface HeroProps {
   profile?: {
@@ -16,26 +19,12 @@ interface HeroProps {
 
 export default function Hero({ profile }: HeroProps) {
   const role = profile?.role || "Artificial Intelligence & Data Science Student";
-  const name = profile?.name || "Delight Cherubino";
-  const parts = name.split(" ");
-  const firstName = parts[0];
-  const lastName = parts.slice(1).join(" ");
-  const bgImg = profile?.hero_image || "/images/1.jpg";
 
   return (
-    <section id="home" className="relative min-h-[92vh] flex items-center justify-center pt-28 pb-20 overflow-hidden w-full">
-      {/* Prominent, Fully Visible Background Image */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-65 transition-opacity duration-1000 scale-105"
-        style={{ backgroundImage: `url('${bgImg}')` }}
-      />
-      {/* Gradient vignette to ensure 100% text readability without hiding image */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#04060a] via-[#04060a]/75 to-[#04060a]/40" />
-      <div className="absolute inset-0 bg-gradient-to-b from-[#04060a]/60 via-transparent to-[#04060a]" />
-
+    <section id="home" className="relative min-h-[92vh] flex items-center justify-center pt-28 pb-20 overflow-hidden w-full bg-[#060503]">
       {/* Electric Glow Spotlights */}
-      <div className="absolute top-1/4 left-10 w-96 h-96 bg-blue-500/35 rounded-full blur-[110px] pointer-events-none animate-pulse" />
-      <div className="absolute bottom-10 right-10 w-[500px] h-[500px] bg-purple-500/30 rounded-full blur-[130px] pointer-events-none" />
+      <div className="absolute top-1/4 left-10 w-96 h-96 bg-[#FB6C00]/30 rounded-full blur-[110px] pointer-events-none animate-pulse" />
+      <div className="absolute bottom-10 right-10 w-[500px] h-[500px] bg-[#E73F1E]/25 rounded-full blur-[130px] pointer-events-none" />
 
       <div className="w-full px-6 sm:px-12 lg:px-16 max-w-[1550px] mx-auto relative z-10">
         {/* Left-Aligned Widescreen Text & CTAs */}
@@ -43,20 +32,79 @@ export default function Hero({ profile }: HeroProps) {
           initial={{ opacity: 0, x: -40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-col items-start text-left gap-7 max-w-5xl"
+          className="flex flex-col items-start text-left gap-6 max-w-5xl"
         >
           {/* Electric Role Badge */}
-          <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full glass-panel border-cyan-500/50 text-cyan-300 text-xs sm:text-sm font-mono tracking-wide shadow-lg shadow-cyan-500/20">
-            <Sparkles className="w-4 h-4 text-cyan-400 animate-spin" style={{ animationDuration: '6s' }} />
+          <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full glass-panel border-[#F9B637]/50 text-[#FFDD9C] text-xs sm:text-sm font-mono tracking-wide shadow-lg shadow-[#FB6C00]/20">
+            <Sparkles className="w-4 h-4 text-[#F9B637] animate-spin" style={{ animationDuration: '6s' }} />
             <span className="font-semibold">{role}</span>
           </div>
 
-          {/* Main Title */}
-          <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight leading-[1.05] text-white drop-shadow-md">
-            Hi, I'm <span className="grad-text">{firstName}</span>{" "}
-            <span className="text-slate-200">{lastName}</span>
-            <br />
-            building with <span className="grad-text-vibrant underline decoration-cyan-400/80 decoration-wavy underline-offset-8">precision.</span>
+          {/* Split Flap Display Board */}
+          <div className="py-1">
+            <SplitFlapText
+              words={["LAUNCH READY", "AI ARCHITECT", "SIGNAL LIVE", "PRECISION CODE"]}
+              flipDuration={0.12}
+              stagger={0.05}
+              cycleDelay={2600}
+              charset="alphanumeric"
+              flipsPerChar={8}
+              tileColor="#18120c"
+              textColor="#FFDD9C"
+              tileRadius={8}
+              gap={5}
+              fontSize={44}
+              loop
+              padTo={14}
+            />
+          </div>
+
+          {/* Sequential GSAP SplitText Landing Title Animation */}
+          <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight leading-[1.08] text-white drop-shadow-md flex flex-col items-start gap-2">
+            <SplitText
+              text="Hello,"
+              className="grad-text font-black"
+              delay={100}
+              duration={0.6}
+              ease="power3.out"
+              splitType="chars"
+              from={{ opacity: 0, y: 40 }}
+              to={{ opacity: 1, y: 0 }}
+              threshold={0.1}
+            />
+            <SplitText
+              text="Cherubino here."
+              className="text-slate-100 font-black"
+              delay={650}
+              duration={0.6}
+              ease="power3.out"
+              splitType="chars"
+              from={{ opacity: 0, y: 40 }}
+              to={{ opacity: 1, y: 0 }}
+              threshold={0.1}
+            />
+            
+            {/* Dynamic Changing Sentence via RotatingText */}
+            <div className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-bold grad-text-vibrant mt-2 flex flex-wrap items-center gap-x-3 gap-y-2">
+              <span>Building</span>
+              <RotatingText
+                texts={[
+                  "intelligent AI systems.",
+                  "real-time computer vision.",
+                  "scalable cloud platforms.",
+                  "high-throughput backends.",
+                ]}
+                mainClassName="px-3 py-1 bg-[#FB6C00]/20 text-[#FFDD9C] border border-[#FB6C00]/40 rounded-xl overflow-hidden shadow-lg shadow-[#FB6C00]/20 inline-flex items-center"
+                staggerFrom="last"
+                initial={{ y: "100%", opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: "-120%", opacity: 0 }}
+                staggerDuration={0.025}
+                splitLevelClassName="overflow-hidden pb-0.5"
+                transition={{ type: "spring", damping: 30, stiffness: 400 }}
+                rotationInterval={2400}
+              />
+            </div>
           </h1>
 
           {/* Subtitle / Bio */}
@@ -70,7 +118,7 @@ export default function Hero({ profile }: HeroProps) {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white font-bold shadow-xl shadow-blue-500/35 hover:shadow-blue-500/60 transition-all text-sm sm:text-base border border-blue-400/40"
+                className="flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-[#E73F1E] via-[#FB6C00] to-[#F9B637] text-white font-bold shadow-xl shadow-[#FB6C00]/35 hover:shadow-[#FB6C00]/60 transition-all text-sm sm:text-base border border-[#FFDD9C]/40"
               >
                 <span>Explore Commercial Work</span>
                 <ArrowRight className="w-5 h-5" />
@@ -82,9 +130,9 @@ export default function Hero({ profile }: HeroProps) {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="flex items-center gap-2.5 px-7 py-4 rounded-full bg-cyan-950/80 border border-cyan-500/60 text-cyan-300 font-semibold hover:bg-cyan-900/90 hover:text-white transition-all text-sm sm:text-base shadow-lg shadow-cyan-500/20"
+                  className="flex items-center gap-2.5 px-7 py-4 rounded-full bg-[#E73F1E]/20 border border-[#FB6C00]/60 text-[#FFDD9C] hover:bg-[#FB6C00]/30 hover:text-white transition-all text-sm sm:text-base shadow-lg shadow-[#FB6C00]/20"
                 >
-                  <Sparkles className="w-4 h-4 text-cyan-400" />
+                  <Sparkles className="w-4 h-4 text-[#F9B637]" />
                   <span>View Resume</span>
                 </motion.button>
               </a>
@@ -94,9 +142,9 @@ export default function Hero({ profile }: HeroProps) {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="flex items-center gap-2.5 px-7 py-4 rounded-full glass-panel border-slate-700 text-slate-200 font-semibold hover:text-white transition-all text-sm sm:text-base"
+                className="flex items-center gap-2.5 px-7 py-4 rounded-full glass-panel border-slate-700 text-slate-200 font-semibold hover:text-[#FFDD9C] transition-all text-sm sm:text-base"
               >
-                <Terminal className="w-4 h-4 text-purple-400" />
+                <Terminal className="w-4 h-4 text-[#F9B637]" />
                 <span>Discover Journey</span>
               </motion.button>
             </a>
@@ -112,7 +160,7 @@ export default function Hero({ profile }: HeroProps) {
         className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
       >
         <span className="text-[10px] font-mono tracking-widest text-slate-400 uppercase font-semibold">Scroll Down</span>
-        <div className="w-[2px] h-7 bg-gradient-to-b from-cyan-400 to-transparent animate-bounce" />
+        <div className="w-[2px] h-7 bg-gradient-to-b from-[#F9B637] to-transparent animate-bounce" />
       </motion.div>
     </section>
   );

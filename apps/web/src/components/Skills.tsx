@@ -39,8 +39,8 @@ export default function Skills({ skills }: SkillsProps) {
           viewport={{ once: true }}
           className="flex flex-col items-start text-left gap-3 mb-16"
         >
-          <div className="flex items-center gap-2 text-cyan-400 font-mono text-sm uppercase tracking-wider font-semibold">
-            <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 shadow-sm shadow-cyan-400" />
+          <div className="flex items-center gap-2 text-[#F9B637] font-mono text-sm uppercase tracking-wider font-semibold">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#FB6C00] shadow-sm shadow-[#FB6C00]" />
             <span>05 / Technical Arsenal</span>
           </div>
           <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white">
@@ -59,7 +59,7 @@ export default function Skills({ skills }: SkillsProps) {
               transition={{ duration: 0.6, delay: idx * 0.1 }}
               className="flex flex-col gap-6"
             >
-              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl glass-panel border-cyan-500/20 text-cyan-400 font-mono text-xs font-semibold w-fit">
+              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl glass-panel border-[#FB6C00]/30 text-[#FFDD9C] font-mono text-xs font-semibold w-fit">
                 <Wrench className="w-3.5 h-3.5" />
                 <span>{category}</span>
               </div>
@@ -78,7 +78,7 @@ export default function Skills({ skills }: SkillsProps) {
                         whileInView={{ width: `${skill.proficiency}%` }}
                         viewport={{ once: true }}
                         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                        className="h-full rounded-full bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 shadow-sm"
+                        className="h-full rounded-full bg-gradient-to-r from-[#E73F1E] via-[#FB6C00] to-[#F9B637] shadow-sm"
                       />
                     </div>
                   </div>

@@ -2,7 +2,8 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ExternalLink, Code, X, FolderCode, ArrowUpRight } from "lucide-react";
+import { ExternalLink, Code, X, FolderCode } from "lucide-react";
+import ChromaGrid, { type ChromaItem } from "./ChromaGrid";
 import type { Project } from "./Projects";
 
 interface PersonalProjectsProps {
@@ -15,8 +16,34 @@ export default function PersonalProjects({ projects }: PersonalProjectsProps) {
   const personalProjects = projects.filter((p) => p.category === "personal");
   if (personalProjects.length === 0) return null;
 
+  const chromaItems: ChromaItem[] = personalProjects.map((p, i) => {
+    const borders = ["#E73F1E", "#F9B637", "#FB6C00"];
+    const gradients = [
+      "linear-gradient(145deg, rgba(231, 63, 30, 0.25), rgba(6, 5, 3, 0.95))",
+      "linear-gradient(145deg, rgba(249, 182, 55, 0.2), rgba(6, 5, 3, 0.95))",
+      "linear-gradient(145deg, rgba(251, 108, 0, 0.25), rgba(6, 5, 3, 0.95))",
+    ];
+
+    return {
+      _id: p._id,
+      image: p.image,
+      title: p.title,
+      subtitle: p.description,
+      company: p.company || "Personal Venture",
+      handle: p.company || "Personal Venture",
+      borderColor: borders[i % borders.length],
+      gradient: gradients[i % gradients.length],
+      tech_stack: p.tech_stack,
+      award_name: p.award_name,
+      award_link: p.award_link,
+      live_link: p.live_link,
+      github_link: p.github_link,
+      originalProject: p,
+    };
+  });
+
   return (
-    <section id="personal-projects" className="py-32 relative border-t border-slate-800/80 bg-[#04060a]/70 w-full">
+    <section id="personal-projects" className="py-32 relative border-t border-slate-800/80 bg-[#060503]/70 w-full">
       <div className="w-full px-6 sm:px-12 lg:px-16 max-w-[1550px] mx-auto">
         
         {/* Left-Aligned Header */}
@@ -24,10 +51,10 @@ export default function PersonalProjects({ projects }: PersonalProjectsProps) {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="flex flex-col items-start text-left gap-3 mb-16"
+          className="flex flex-col items-start text-left gap-3 mb-12"
         >
-          <div className="flex items-center gap-2 text-purple-400 font-mono text-sm uppercase tracking-wider font-semibold">
-            <span className="w-2.5 h-2.5 rounded-full bg-purple-500 shadow-sm shadow-purple-500" />
+          <div className="flex items-center gap-2 text-[#E73F1E] font-mono text-sm uppercase tracking-wider font-semibold">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#E73F1E] shadow-sm shadow-[#E73F1E]" />
             <span>03 / Ventures & Experiments</span>
           </div>
           <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white">
@@ -35,52 +62,15 @@ export default function PersonalProjects({ projects }: PersonalProjectsProps) {
           </h2>
         </motion.div>
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {personalProjects.map((project, idx) => (
-            <motion.div
-              key={project._id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: idx * 0.1 }}
-              onClick={() => setSelectedProject(project)}
-              className="group cursor-pointer rounded-3xl glass-panel border-slate-800 p-6 flex flex-col justify-between hover:border-purple-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/10 relative overflow-hidden"
-            >
-              <div className="flex flex-col gap-4">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-purple-950/60 border border-purple-800/40 text-purple-400 text-xs font-mono">
-                    <FolderCode className="w-3.5 h-3.5" />
-                    <span>{project.company || "Personal Venture"}</span>
-                  </div>
-
-                  <div className="w-8 h-8 rounded-full bg-slate-800/60 flex items-center justify-center text-slate-400 group-hover:text-white group-hover:bg-purple-600 transition-colors">
-                    <ArrowUpRight className="w-4 h-4" />
-                  </div>
-                </div>
-
-                <h3 className="text-2xl font-bold text-slate-100 group-hover:text-purple-400 transition-colors">
-                  {project.title}
-                </h3>
-
-                <p className="text-slate-300 text-sm line-clamp-3 leading-relaxed">
-                  {project.description}
-                </p>
-              </div>
-
-              <div className="flex flex-wrap gap-2 pt-6 mt-4 border-t border-slate-800/40">
-                {(project.tech_stack || []).map((tech, i) => (
-                  <span
-                    key={i}
-                    className="px-2.5 py-1 rounded-md bg-slate-800/40 border border-slate-700/40 text-slate-300 text-xs font-mono"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
-          ))}
-        </div>
+        {/* ChromaGrid Spotlight Component */}
+        <ChromaGrid
+          items={chromaItems}
+          radius={320}
+          damping={0.45}
+          fadeOut={0.6}
+          columns={3}
+          onItemClick={(item) => setSelectedProject(item.originalProject || null)}
+        />
       </div>
 
       {/* Modal Overlay */}
@@ -109,12 +99,22 @@ export default function PersonalProjects({ projects }: PersonalProjectsProps) {
               </button>
 
               <div className="flex flex-col gap-6">
-                <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-purple-950 border border-purple-800 text-purple-400 text-xs font-mono w-fit">
+                <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-[#E73F1E]/20 border border-[#FB6C00]/40 text-[#FFDD9C] text-xs font-mono w-fit">
                   <FolderCode className="w-4 h-4" />
                   <span>{selectedProject.company || "Personal Venture"}</span>
                 </div>
 
                 <h2 className="text-3xl sm:text-4xl font-bold text-slate-100">{selectedProject.title}</h2>
+
+                {selectedProject.image && (
+                  <div className="w-full h-64 rounded-2xl overflow-hidden border border-slate-800 relative">
+                    <img
+                      src={selectedProject.image}
+                      alt={selectedProject.title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                )}
 
                 <div className="text-slate-300 text-base leading-relaxed whitespace-pre-line">
                   {selectedProject.description}
@@ -149,7 +149,7 @@ export default function PersonalProjects({ projects }: PersonalProjectsProps) {
                       href={selectedProject.live_link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:brightness-110 text-white font-medium text-sm transition-colors shadow-lg"
+                      className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-[#FB6C00] to-[#E73F1E] hover:brightness-110 text-white font-medium text-sm transition-colors shadow-lg"
                     >
                       <ExternalLink className="w-4 h-4" />
                       <span>Live App</span>

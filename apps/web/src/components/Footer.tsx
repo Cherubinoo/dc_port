@@ -45,8 +45,8 @@ export default function Footer({ profile }: FooterProps) {
             viewport={{ once: true }}
             className="lg:col-span-7 flex flex-col items-start text-left gap-6"
           >
-            <div className="flex items-center gap-2 text-cyan-400 font-mono text-sm uppercase tracking-wider font-semibold">
-              <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 shadow-sm shadow-cyan-400" />
+            <div className="flex items-center gap-2 text-[#F9B637] font-mono text-sm uppercase tracking-wider font-semibold">
+              <span className="w-2.5 h-2.5 rounded-full bg-[#FB6C00] shadow-sm shadow-[#FB6C00]" />
               <span>Let's create something memorable</span>
             </div>
 
@@ -63,7 +63,7 @@ export default function Footer({ profile }: FooterProps) {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white font-bold shadow-xl shadow-blue-500/35 hover:shadow-blue-500/60 transition-all text-sm sm:text-base border border-blue-400/40"
+                  className="flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-[#E73F1E] via-[#FB6C00] to-[#F9B637] text-white font-bold shadow-xl shadow-[#FB6C00]/35 hover:shadow-[#FB6C00]/60 transition-all text-sm sm:text-base border border-[#FFDD9C]/40"
                 >
                   <span>Start a conversation</span>
                   <ArrowRight className="w-5 h-5" />
@@ -84,23 +84,23 @@ export default function Footer({ profile }: FooterProps) {
             transition={{ delay: 0.2 }}
             className="lg:col-span-5 flex flex-col justify-between gap-6"
           >
-            <div className="p-7 rounded-3xl glass-panel border-blue-500/30 space-y-5 shadow-xl">
+            <div className="p-7 rounded-3xl glass-panel border-[#FB6C00]/30 space-y-5 shadow-xl">
               <div className="flex items-center gap-3 text-slate-100 text-base">
-                <Mail className="w-5 h-5 text-blue-400" />
-                <a href={`mailto:${email}`} className="hover:text-blue-400 transition-colors font-semibold">
+                <Mail className="w-5 h-5 text-[#F9B637]" />
+                <a href={`mailto:${email}`} className="hover:text-[#F9B637] transition-colors font-semibold">
                   {email}
                 </a>
               </div>
 
               {phone && (
                 <div className="flex items-center gap-3 text-slate-100 text-base">
-                  <Phone className="w-5 h-5 text-emerald-400" />
+                  <Phone className="w-5 h-5 text-[#FB6C00]" />
                   <span className="font-semibold">{phone}</span>
                 </div>
               )}
 
               <div className="flex items-center gap-3 text-slate-300 text-sm font-mono">
-                <MapPin className="w-5 h-5 text-purple-400" />
+                <MapPin className="w-5 h-5 text-[#E73F1E]" />
                 <span>Based in India • Global Collaboration</span>
               </div>
             </div>
@@ -112,7 +112,7 @@ export default function Footer({ profile }: FooterProps) {
                   href={github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3.5 rounded-full glass-panel border-blue-500/40 text-slate-200 hover:text-white hover:border-cyan-400 transition-colors shadow-lg"
+                  className="p-3.5 rounded-full glass-panel border-[#FB6C00]/40 text-slate-200 hover:text-[#FFDD9C] hover:border-[#F9B637] transition-colors shadow-lg"
                   aria-label="GitHub"
                 >
                   <GithubIcon />
@@ -124,7 +124,7 @@ export default function Footer({ profile }: FooterProps) {
                   href={linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3.5 rounded-full glass-panel border-blue-500/40 text-slate-200 hover:text-white hover:border-cyan-400 transition-colors shadow-lg"
+                  className="p-3.5 rounded-full glass-panel border-[#FB6C00]/40 text-slate-200 hover:text-[#FFDD9C] hover:border-[#F9B637] transition-colors shadow-lg"
                   aria-label="LinkedIn"
                 >
                   <LinkedinIcon />
@@ -133,7 +133,7 @@ export default function Footer({ profile }: FooterProps) {
 
               <a
                 href={`mailto:${email}`}
-                className="p-3.5 rounded-full glass-panel border-blue-500/40 text-slate-200 hover:text-white hover:border-cyan-400 transition-colors shadow-lg"
+                className="p-3.5 rounded-full glass-panel border-[#FB6C00]/40 text-slate-200 hover:text-[#FFDD9C] hover:border-[#F9B637] transition-colors shadow-lg"
                 aria-label="Email"
               >
                 <Mail className="w-5 h-5" />

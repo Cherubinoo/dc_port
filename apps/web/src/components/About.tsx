@@ -44,8 +44,8 @@ export default function About({ profile }: AboutProps) {
             transition={{ duration: 0.8 }}
             className="lg:col-span-6 flex flex-col items-start text-left gap-6"
           >
-            <div className="flex items-center gap-2 text-cyan-400 font-mono text-sm uppercase tracking-wider font-semibold">
-              <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 shadow-sm shadow-cyan-400" />
+            <div className="flex items-center gap-2 text-[#F9B637] font-mono text-sm uppercase tracking-wider font-semibold">
+              <span className="w-2.5 h-2.5 rounded-full bg-[#F9B637] shadow-sm shadow-[#F9B637]" />
               <span>01 / The Story</span>
             </div>
 
@@ -59,8 +59,8 @@ export default function About({ profile }: AboutProps) {
             </div>
 
             {/* Vibrant Neoteric AI Association Leadership Badge */}
-            <div className="p-5 rounded-2xl glass-panel border-blue-500/30 flex items-center gap-4 mt-2 w-full max-w-lg shadow-lg">
-              <div className="p-3 rounded-xl bg-blue-600/30 text-blue-400 border border-blue-400/40">
+            <div className="p-5 rounded-2xl glass-panel border-[#FB6C00]/30 flex items-center gap-4 mt-2 w-full max-w-lg shadow-lg">
+              <div className="p-3 rounded-xl bg-[#FB6C00]/20 text-[#FFDD9C] border border-[#FB6C00]/40">
                 <Cpu className="w-7 h-7" />
               </div>
               <div>
@@ -79,8 +79,8 @@ export default function About({ profile }: AboutProps) {
             className="lg:col-span-6 flex flex-col gap-6"
           >
             {/* Vision Card */}
-            <div className="p-8 rounded-3xl glass-panel border-blue-500/30 hover:border-blue-400 transition-all flex flex-col gap-3 shadow-xl">
-              <div className="flex items-center gap-3 text-blue-400">
+            <div className="p-8 rounded-3xl glass-panel border-[#FB6C00]/30 hover:border-[#F9B637] transition-all flex flex-col gap-3 shadow-xl">
+              <div className="flex items-center gap-3 text-[#F9B637]">
                 <Target className="w-6 h-6" />
                 <h3 className="font-mono text-base uppercase tracking-wider font-bold">The Vision</h3>
               </div>
@@ -88,8 +88,8 @@ export default function About({ profile }: AboutProps) {
             </div>
 
             {/* Current Focus Card */}
-            <div className="p-8 rounded-3xl glass-panel border-purple-500/30 hover:border-purple-400 transition-all flex flex-col gap-3 shadow-xl">
-              <div className="flex items-center gap-3 text-purple-400">
+            <div className="p-8 rounded-3xl glass-panel border-[#E73F1E]/30 hover:border-[#FB6C00] transition-all flex flex-col gap-3 shadow-xl">
+              <div className="flex items-center gap-3 text-[#FB6C00]">
                 <Compass className="w-6 h-6" />
                 <h3 className="font-mono text-base uppercase tracking-wider font-bold">Current Focus</h3>
               </div>
@@ -97,8 +97,8 @@ export default function About({ profile }: AboutProps) {
             </div>
 
             {/* Leadership Card */}
-            <div className="p-8 rounded-3xl glass-panel border-emerald-500/30 hover:border-emerald-400 transition-all flex flex-col gap-3 shadow-xl">
-              <div className="flex items-center gap-3 text-emerald-400">
+            <div className="p-8 rounded-3xl glass-panel border-[#F9B637]/30 hover:border-[#FFDD9C] transition-all flex flex-col gap-3 shadow-xl">
+              <div className="flex items-center gap-3 text-[#FFDD9C]">
                 <Award className="w-6 h-6" />
                 <h3 className="font-mono text-base uppercase tracking-wider font-bold">Leadership</h3>
               </div>

@@ -176,7 +176,7 @@ export default function Home() {
   const activeExperiences = experiences && experiences.length > 0 ? experiences : DEFAULT_EXPERIENCES;
 
   return (
-    <div className="min-h-screen bg-[#0a0c10] text-slate-100 selection:bg-blue-600 selection:text-white">
+    <div className="min-h-screen bg-[#060503] text-slate-100 selection:bg-[#FB6C00] selection:text-white">
       <Navigation resumeUrl={activeProfile?.resume} />
       <Hero profile={activeProfile} />
       <About profile={activeProfile} />
